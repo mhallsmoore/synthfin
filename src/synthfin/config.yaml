@@ -1,0 +1,66 @@
+# config.yaml
+
+# Pipeline configuration for synthetic financial time series generation
+
+# Correlation matrix generator
+correlation:
+  # Options: "naive", "hierarchical"
+  model: "hierarchical"
+  
+  # Parameters for each model type
+  parameters:
+    naive: {}
+    
+    hierarchical:
+      n_clusters: null  # null means sqrt(n) clusters
+      intra_cluster_corr: 0.7
+      inter_cluster_corr: 0.2
+      noise_level: 0.1
+
+# Time series model
+time_series:
+  # Options: "gbm", "jump_diffusion"
+  model: "gbm"
+  
+  # Common parameters
+  common:
+    drift: 0.07  # 5% annual drift
+    volatility: 0.3  # 20% annual volatility
+    dt: 0.00396825  # 1/252 (daily time step)
+  
+  # Model-specific parameters
+  parameters:
+    gbm: {}
+    
+    jump_diffusion:
+      jump_intensity: 0.1  # Average 0.1 jumps per year
+      jump_mean: 0.0
+      jump_std: 0.1
+
+# Simulation parameters
+simulation:
+  n_assets: 20
+  n_days: 252  # One year of trading days
+  start_date: "2024-01-02"
+  
+  # Price initialization
+  price_range:
+    min: 10
+    max: 1000
+
+# Output configuration
+output:
+  # Output format
+  formatter: "dataframe"
+  
+  # DataFrame specific
+  dataframe:
+    save_to_csv: true
+    csv_filename: "synthetic_prices.csv"
+
+# Visualization configuration
+visualization:
+  enabled: true
+  save_plots: true
+  plot_prefix: "synthetic_"
+  figsize: [15, 12]
