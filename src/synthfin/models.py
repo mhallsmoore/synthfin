@@ -269,7 +269,7 @@ class HestonStochasticVolatility(TimeSeriesModel):
 
         for t in range(n_steps):
             v_pos = max(v_t, 0.0)
-            v_t = (v_t
+            v_t = (v_pos
                    + self.kappa * (self.theta_v - v_pos) * self.dt
                    + self.sigma_v * np.sqrt(v_pos) * dt_sqrt * z2[t])
             v_pos_new = max(v_t, 0.0)
@@ -283,6 +283,9 @@ class HestonStochasticVolatility(TimeSeriesModel):
 class OrnsteinUhlenbeck(TimeSeriesModel):
     """
     Ornstein-Uhlenbeck mean-reverting process for log-prices.
+
+    Note: The ``drift`` parameter is accepted for interface compatibility
+    but is not used. Mean-reversion toward ``theta`` governs the dynamics.
     """
 
     def __init__(self, start_price: float, drift: float = 0.0, volatility: float = 0.2,
