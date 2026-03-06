@@ -68,6 +68,42 @@ def create_config(
             "jump_intensity": 0.1,
             "jump_mean": 0.0,
             "jump_std": 0.1
+        },
+        "ar1_gbm": {
+            "drift": 0.05,
+            "volatility": 0.2,
+            "dt": 1/252,
+            "ar_coeff": 0.05
+        },
+        "garch": {
+            "drift": 0.05,
+            "volatility": 0.2,
+            "dt": 1/252,
+            "alpha": 0.05,
+            "beta": 0.90
+        },
+        "arma_garch": {
+            "drift": 0.05,
+            "volatility": 0.2,
+            "dt": 1/252,
+            "ar_coeff": 0.05,
+            "ma_coeff": -0.05,
+            "alpha": 0.05,
+            "beta": 0.90
+        },
+        "heston": {
+            "drift": 0.05,
+            "volatility": 0.2,
+            "dt": 1/252,
+            "kappa": 2.0,
+            "sigma_v": 0.3,
+            "rho": -0.7
+        },
+        "ornstein_uhlenbeck": {
+            "drift": 0.05,
+            "volatility": 0.2,
+            "dt": 1/252,
+            "kappa": 5.0
         }
     }
     

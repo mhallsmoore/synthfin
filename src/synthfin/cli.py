@@ -36,7 +36,10 @@ Examples:
     gen_parser.add_argument("-c", "--config", type=str, help="Path to configuration file")
     gen_parser.add_argument("-n", "--n-assets", type=int, help="Number of assets")
     gen_parser.add_argument("-d", "--n-days", type=int, help="Number of days")
-    gen_parser.add_argument("--model", choices=["gbm", "jump_diffusion"], help="Time series model")
+    gen_parser.add_argument("--model", choices=[
+        "gbm", "jump_diffusion", "ar1_gbm", "garch", "arma_garch",
+        "heston", "ornstein_uhlenbeck"
+    ], help="Time series model")
     gen_parser.add_argument("--correlation", choices=["naive", "hierarchical"], help="Correlation model")
     gen_parser.add_argument("-o", "--output", type=str, help="Output CSV filename")
     gen_parser.add_argument("--no-viz", action="store_true", help="Disable visualization")

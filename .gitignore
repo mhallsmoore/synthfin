@@ -208,3 +208,7 @@ __marimo__/
 
 # OS
 .DS_Store
+
+# Data
+synthetic_analysis.png
+synthetic_prices.csv

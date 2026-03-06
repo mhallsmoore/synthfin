@@ -19,23 +19,44 @@ correlation:
 
 # Time series model
 time_series:
-  # Options: "gbm", "jump_diffusion"
+  # Options: "gbm", "jump_diffusion", "ar1_gbm", "garch", "arma_garch", "heston", "ornstein_uhlenbeck"
   model: "gbm"
-  
+
   # Common parameters
   common:
-    drift: 0.07  # 5% annual drift
-    volatility: 0.3  # 20% annual volatility
+    drift: 0.07  # 7% annual drift
+    volatility: 0.3  # 30% annual volatility
     dt: 0.00396825  # 1/252 (daily time step)
-  
+
   # Model-specific parameters
   parameters:
     gbm: {}
-    
+
     jump_diffusion:
       jump_intensity: 0.1  # Average 0.1 jumps per year
       jump_mean: 0.0
       jump_std: 0.1
+
+    ar1_gbm:
+      ar_coeff: 0.05  # AR(1) coefficient, must be in (-1, 1)
+
+    garch:
+      alpha: 0.05  # ARCH coefficient
+      beta: 0.90   # GARCH persistence (alpha + beta < 1)
+
+    arma_garch:
+      ar_coeff: 0.05   # AR(1) coefficient
+      ma_coeff: -0.05  # MA(1) coefficient
+      alpha: 0.05      # ARCH coefficient
+      beta: 0.90       # GARCH persistence
+
+    heston:
+      kappa: 2.0     # Mean-reversion speed
+      sigma_v: 0.3   # Vol-of-vol
+      rho: -0.7      # Price-variance correlation
+
+    ornstein_uhlenbeck:
+      kappa: 5.0  # Mean-reversion speed (half-life ~35 trading days)
 
 # Simulation parameters
 simulation:
