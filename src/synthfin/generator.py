@@ -58,8 +58,16 @@ class CorrelatedTimeSeriesGenerator:
         
         # Generate price paths for each asset
         price_matrix = np.zeros((n_days, self.n_assets))
-        
+
         for i, model in enumerate(self.time_series_models):
-            price_matrix[:, i] = model.generate_path(n_days, correlated_shocks[:, i])
-        
+            n_streams = getattr(model, 'n_shock_streams', 1)
+            if n_streams > 1:
+                # Generate extra independent shocks for additional streams
+                extra_shocks = np.random.standard_normal((n_days, n_streams - 1))
+                # Stack correlated shock with extra independent shocks
+                shocks = np.column_stack([correlated_shocks[:, i], extra_shocks])
+                price_matrix[:, i] = model.generate_path(n_days, shocks)
+            else:
+                price_matrix[:, i] = model.generate_path(n_days, correlated_shocks[:, i])
+
         return price_matrix, correlation_matrix

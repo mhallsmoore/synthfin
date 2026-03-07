@@ -5,7 +5,10 @@ import numpy as np
 import yaml
 
 from synthfin.correlation import NaiveCorrelationGenerator, HierarchicalCorrelationGenerator
-from synthfin.models import GeometricBrownianMotion, JumpDiffusion
+from synthfin.models import (
+    GeometricBrownianMotion, JumpDiffusion,
+    AR1GBM, GARCH, ARMAGARCH, HestonStochasticVolatility, OrnsteinUhlenbeck
+)
 from synthfin.generator import CorrelatedTimeSeriesGenerator
 from synthfin.output import DataFrameFormatter
 from synthfin.visualization import TimeSeriesVisualizer
@@ -19,7 +22,12 @@ CORRELATION_MODELS = {
 
 TIME_SERIES_MODELS = {
     "gbm": GeometricBrownianMotion,
-    "jump_diffusion": JumpDiffusion
+    "jump_diffusion": JumpDiffusion,
+    "ar1_gbm": AR1GBM,
+    "garch": GARCH,
+    "arma_garch": ARMAGARCH,
+    "heston": HestonStochasticVolatility,
+    "ornstein_uhlenbeck": OrnsteinUhlenbeck,
 }
 
 OUTPUT_FORMATTERS = {

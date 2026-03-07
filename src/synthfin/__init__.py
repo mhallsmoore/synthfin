@@ -21,6 +21,11 @@ from .models import (
     TimeSeriesModel,
     GeometricBrownianMotion,
     JumpDiffusion,
+    AR1GBM,
+    GARCH,
+    ARMAGARCH,
+    HestonStochasticVolatility,
+    OrnsteinUhlenbeck,
 )
 from .generator import CorrelatedTimeSeriesGenerator
 from .output import (
@@ -58,6 +63,11 @@ __all__ = [
     "TimeSeriesModel",
     "GeometricBrownianMotion",
     "JumpDiffusion",
+    "AR1GBM",
+    "GARCH",
+    "ARMAGARCH",
+    "HestonStochasticVolatility",
+    "OrnsteinUhlenbeck",
     
     # Core functionality
     "CorrelatedTimeSeriesGenerator",
